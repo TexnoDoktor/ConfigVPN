@@ -1,12 +1,15 @@
 {
+  "inbounds": [],
+  "log": {
+    "loglevel": "warning"
+  },
   "outbounds": [
     {
-      "tag": "proxy",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "89.124.124.115.251",
+            "address": "89.124.115.251",
             "port": 8443,
             "users": [
               {
@@ -29,7 +32,8 @@
           "shortId": "066324ac8416ab75",
           "spiderX": "/"
         }
-      }
+      },
+      "tag": "proxy"
     },
     {
       "protocol": "freedom",
@@ -40,12 +44,9 @@
     "rules": [
       {
         "type": "field",
-        "outboundTag": "proxy",
-        "network": "tcp,udp"
+        "network": "tcp,udp",
+        "outboundTag": "proxy"
       }
     ]
-  },
-  "log": {
-    "loglevel": "warning"
   }
 }
