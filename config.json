@@ -36,9 +36,7 @@
       "protocol": "wireguard",
       "settings": {
         "secretKey": "EHkpuuhtXt9GDJP4ebdRqf5TZA4r6oBpT5RR/W6Nink=",
-        "address": [
-          "10.0.0.2/32"
-        ],
+        "address": ["10.0.0.2/32"],
         "peers": [
           {
             "publicKey": "2I7Um01jqpKXAs+RHzOzHdA9DKdsWcffyhBCa4d2u14=",
@@ -53,10 +51,11 @@
           "Jmax": 70,
           "S1": 15,
           "S2": 39,
-          "H1": 1,
-          "H2": 2,
-          "H3": 3,
-          "H4": 4
+          "H1": "1956401880-1985661015",
+          "H2": "2078519345-2113537040",
+          "H3": "2146124277-2146847338",
+          "H4": "2146932657-2146934295",
+          "I1": "<r 2><b 0x858000010001000000000669636c6f756403636f6d0000010001c00c000100010000105a00044d583737>"
         }
       }
     },
@@ -71,31 +70,23 @@
       {
         "type": "field",
         "outboundTag": "proxy-vless",
-        "domain": [
-          "domain:youtube.com", "domain:googlevideo.com", "domain:ytimg.com",
-          "domain:instagram.com", "domain:cdninstagram.com",
-          "domain:facebook.com", "domain:fbcdn.net",
-          "domain:openai.com", "domain:chatgpt.com",
-          "domain:anthropic.com", "domain:claude.ai",
-          "domain:google.com", "domain:gemini.google.com",
-          "domain:twitter.com", "domain:x.com",
-          "domain:whatsapp.com", "domain:viber.com",
-          "domain:patreon.com", "domain:roblox.com",
-          "domain:discord.com", "domain:discordapp.com"
+        "process": [
+          "chrome.exe", "GoogleChrome.exe", "chromium.exe",
+          "firefox.exe", "msedge.exe", "brave.exe",
+          "youtube.exe", "ytmusic.exe"
         ]
       },
       {
         "type": "field",
         "outboundTag": "proxy-amnezia",
-        "domain": [
-          "domain:t.me",
-          "domain:telegram.org"
+        "process": [
+          "Telegram.exe", "telegram-desktop.exe", "Telegram"
         ]
       },
       {
         "type": "field",
         "outboundTag": "direct",
-        "network": "udp,tcp"
+        "network": "tcp,udp"
       }
     ]
   }
