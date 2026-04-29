@@ -1,24 +1,4 @@
 {
-  "log": {
-    "loglevel": "warning"
-  },
-  "inbounds": [
-    {
-      "tag": "socks-in",
-      "port": 10808,
-      "listen": "127.0.0.1",
-      "protocol": "socks",
-      "settings": {
-        "udp": true
-      }
-    },
-    {
-      "tag": "http-in",
-      "port": 10809,
-      "listen": "127.0.0.1",
-      "protocol": "http"
-    }
-  ],
   "outbounds": [
     {
       "tag": "proxy",
@@ -58,15 +38,5 @@
       "tag": "block",
       "protocol": "blackhole"
     }
-  ],
-  "routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [
-      {
-        "type": "field",
-        "outboundTag": "direct",
-        "ip": ["geoip:private"]
-      }
-    ]
-  }
+  ]
 }
