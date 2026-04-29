@@ -1,12 +1,12 @@
 {
   "outbounds": [
     {
-      "tag": "proxy-vless",
+      "tag": "proxy",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "89.124.115.251",
+            "address": "89.124.124.115.251",
             "port": 8443,
             "users": [
               {
@@ -32,62 +32,20 @@
       }
     },
     {
-      "tag": "proxy-amnezia",
-      "protocol": "wireguard",
-      "settings": {
-        "secretKey": "EHkpuuhtXt9GDJP4ebdRqf5TZA4r6oBpT5RR/W6Nink=",
-        "address": ["10.0.0.2/32"],
-        "peers": [
-          {
-            "publicKey": "2I7Um01jqpKXAs+RHzOzHdA9DKdsWcffyhBCa4d2u14=",
-            "presharedKey": "aiIxEIUqrZkrn5PQytVyrp1CG97km51icrQah9rzYho=",
-            "endpoint": "89.124.115.251:43347"
-          }
-        ],
-        "mtu": 1280,
-        "amnezia": {
-          "Jc": 4,
-          "Jmin": 40,
-          "Jmax": 70,
-          "S1": 15,
-          "S2": 39,
-          "H1": "1956401880-1985661015",
-          "H2": "2078519345-2113537040",
-          "H3": "2146124277-2146847338",
-          "H4": "2146932657-2146934295",
-          "I1": "<r 2><b 0x858000010001000000000669636c6f756403636f6d0000010001c00c000100010000105a00044d583737>"
-        }
-      }
-    },
-    {
       "protocol": "freedom",
       "tag": "direct"
     }
   ],
   "routing": {
-    "domainStrategy": "AsIs",
     "rules": [
       {
         "type": "field",
-        "outboundTag": "proxy-vless",
-        "process": [
-          "chrome.exe", "GoogleChrome.exe", "chromium.exe",
-          "firefox.exe", "msedge.exe", "brave.exe",
-          "youtube.exe", "ytmusic.exe"
-        ]
-      },
-      {
-        "type": "field",
-        "outboundTag": "proxy-amnezia",
-        "process": [
-          "Telegram.exe", "telegram-desktop.exe", "Telegram"
-        ]
-      },
-      {
-        "type": "field",
-        "outboundTag": "direct",
+        "outboundTag": "proxy",
         "network": "tcp,udp"
       }
     ]
+  },
+  "log": {
+    "loglevel": "warning"
   }
 }
