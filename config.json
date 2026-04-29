@@ -1,0 +1,71 @@
+{
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [{
+          "address": "89.124.115.251",
+          "port": 8443,
+          "users": [{
+            "id": "1af8e049-d8bc-4cf4-a777-0c999864947e",
+            "encryption": "none",
+            "flow": "xtls-rprx-vision"
+          }]
+        }]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "fingerprint": "chrome",
+          "serverName": "www.googletagmanager.com",
+          "publicKey": "GQpHs-Q3ESNI646uaksgcu_yw4uI-SX5HFB3Pmh3fgw",
+          "shortId": "066324ac8416ab75",
+          "spiderX": "/"
+        }
+      },
+      "tag": "proxy"
+    },
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "proxy",
+        "domain": [
+          "domain:youtube.com", "domain:googlevideo.com", "domain:ytimg.com",
+          "domain:instagram.com", "domain:cdninstagram.com",
+          "domain:facebook.com", "domain:fbcdn.net",
+          "domain:t.me", "domain:telegram.org",
+          "domain:openai.com", "domain:chatgpt.com",
+          "domain:anthropic.com", "domain:claude.ai",
+          "domain:google.com", "domain:gemini.google.com",
+          "domain:twitter.com", "domain:x.com",
+          "domain:whatsapp.com", "domain:viber.com",
+          "domain:patreon.com", "domain:roblox.com",
+          "domain:discord.com", "domain:discordapp.com"
+        ],
+        "packageName": [
+          "org.telegram.messenger", "com.instagram.android", "com.facebook.katana",
+          "com.twitter.android", "com.whatsapp", "com.viber.voip",
+          "com.google.android.youtube", "com.patreon.android", "com.roblox.client",
+          "com.discord", "com.openai.chatgpt"
+        ],
+        "process": [
+          "Telegram.exe", "Discord.exe", "WhatsApp.exe", "Viber.exe", "RobloxPlayerBeta.exe"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "network": "udp,tcp"
+      }
+    ]
+  }
+}
