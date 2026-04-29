@@ -1,10 +1,7 @@
 {
-  "inbounds": [],
-  "log": {
-    "loglevel": "warning"
-  },
   "outbounds": [
     {
+      "tag": "proxy-vless",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -32,8 +29,36 @@
           "shortId": "066324ac8416ab75",
           "spiderX": "/"
         }
-      },
-      "tag": "proxy"
+      }
+    },
+    {
+      "tag": "proxy-amnezia",
+      "protocol": "wireguard",
+      "settings": {
+        "secretKey": "EHkpuuhtXt9GDJP4ebdRqf5TZA4r6oBpT5RR/W6Nink=",
+        "address": [
+          "10.0.0.2/32"
+        ],
+        "peers": [
+          {
+            "publicKey": "2I7UmO1jqpKXAs+RHzOzHdA9DKdsWcffyhBCa4d2u14=",
+            "presharedKey": "aiIxEIUqrZkrn5PQytVyrp1CG97km51icrQah9rzYho=",
+            "endpoint": "89.124.115.251:43347"
+          }
+        ],
+        "mtu": 1280,
+        "amnezia": {
+          "Jc": 4,
+          "Jmin": 40,
+          "Jmax": 70,
+          "S1": 15,
+          "S2": 39,
+          "H1": "1956401880-1985661015",
+          "H2": "2078519345-2113537040",
+          "H3": "2146124277-2146847338",
+          "H4": "2146932657-2146934295"
+        }
+      }
     },
     {
       "protocol": "freedom",
@@ -41,11 +66,32 @@
     }
   ],
   "routing": {
+    "domainStrategy": "AsIs",
     "rules": [
       {
         "type": "field",
-        "network": "tcp,udp",
-        "outboundTag": "proxy"
+        "outboundTag": "proxy-vless",
+        "domain": [
+          "domain:youtube.com",
+          "domain:googlevideo.com",
+          "domain:google.com",
+          "domain:instagram.com",
+          "domain:twitter.com",
+          "domain:openai.com"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "proxy-amnezia",
+        "domain": [
+          "domain:t.me",
+          "domain:telegram.org"
+        ]
+      },
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "network": "udp,tcp"
       }
     ]
   }
