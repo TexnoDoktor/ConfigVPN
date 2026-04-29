@@ -1,44 +1,72 @@
 {
   "log": {
-    "level": "warning"
+    "loglevel": "warning"
   },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "port": 10808,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      }
+    },
+    {
+      "tag": "http-in",
+      "port": 10809,
+      "listen": "127.0.0.1",
+      "protocol": "http"
+    }
+  ],
   "outbounds": [
     {
       "tag": "proxy",
-      "type": "vless",
-      "server": "89.124.115.251",
-      "server_port": 8443,
-      "uuid": "1af8e049-d8bc-4cf4-a777-0c999864947e",
-      "flow": "xtls-rprx-vision",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.googletagmanager.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "GQpHs-Q3ESNI646uaksgcu_yw4uI-SX5HFB3Pmh3fgw",
-          "short_id": "066324ac8416ab75"
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "89.124.115.251",
+            "port": 8443,
+            "users": [
+              {
+                "id": "1af8e049-d8bc-4cf4-a777-0c999864947e",
+                "flow": "xtls-rprx-vision",
+                "encryption": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.googletagmanager.com",
+          "fingerprint": "chrome",
+          "publicKey": "GQpHs-Q3ESNI646uaksgcu_yw4uI-SX5HFB3Pmh3fgw",
+          "shortId": "066324ac8416ab75",
+          "spiderX": "/"
         }
-      },
-      "transport": {
-        "type": "tcp"
-      },
-      "packet_encoding": ""
+      }
     },
     {
       "tag": "direct",
-      "type": "direct"
+      "protocol": "freedom"
     },
     {
       "tag": "block",
-      "type": "block"
+      "protocol": "blackhole"
     }
   ],
-  "route": {
-    "rules": [],
-    "final": "proxy"
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "outboundTag": "direct",
+        "ip": ["geoip:private"]
+      }
+    ]
   }
 }
