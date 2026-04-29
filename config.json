@@ -74,7 +74,6 @@
         "domain": [
           "domain:youtube.com",
           "domain:googlevideo.com",
-          "domain:google.com",
           "domain:instagram.com",
           "domain:twitter.com",
           "domain:openai.com"
@@ -91,7 +90,7 @@
       {
         "type": "field",
         "outboundTag": "direct",
-        "network": "udp,tcp"
+        "network": "tcp,udp"
       }
     ]
   }
